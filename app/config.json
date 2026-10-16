@@ -3,9 +3,9 @@
   "schoolEmail": "london-english@live.com",
   "sendToSchool": true,
   "emailjs": {
-    "serviceId": "YOUR_SERVICE_ID",
-    "templateId": "YOUR_TEMPLATE_ID",
-    "publicKey": "YOUR_PUBLIC_KEY"
+    "serviceId": "service_uvrl17o",
+    "templateId": "template_mkci37y",
+    "publicKey": "JeHrNGz76oKQLFb1j"
   },
   "remoteConfigUrl": "https://rich59.github.io/london-centre-tests/config.json"
 }
