@@ -1,0 +1,9 @@
+#lct-bar{position:sticky;top:0;z-index:2147483000;display:flex;align-items:center;gap:8px;padding:5px 12px;background:#012169;color:#fff;
+ font-family:"Century Gothic","Segoe UI",Arial,sans-serif;font-size:14px;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+#lct-bar button{font:inherit;font-size:14px;font-weight:700;border:none;border-radius:10px;padding:5px 12px;cursor:pointer;color:#012169;background:#fff;line-height:1.3}
+#lct-bar button.home{background:#C8102E;color:#fff}
+#lct-bar button:hover{filter:brightness(.93)}
+#lct-bar .sp{flex:1}
+#lct-bar .nm{opacity:.85;font-size:13px;white-space:nowrap}
+@media(max-width:700px){#lct-bar .nm{display:none}}
+@media print{#lct-bar{display:none!important}}

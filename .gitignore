@@ -1,0 +1,11 @@
+node_modules/
+dist/
+speech-model/
+*.tar.gz
+*.exe
+*.blockmap
+test/shots/
+test/wav/
+web/config.json
+__pycache__/
+*.log

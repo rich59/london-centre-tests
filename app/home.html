@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>London Centre Tests</title>
+<style>
+:root{--red:#C8102E;--navy:#012169;--cream:#f5f7fc}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font-family:"Century Gothic","Segoe UI",Arial,sans-serif;color:var(--navy);display:flex;flex-direction:column;
+ background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='98'%3E%3Cpath d='M28 66L0 50V16L28 0l28 16v34L28 66zm0 32L0 82' fill='none' stroke='%23e1e6f2' stroke-width='2'/%3E%3C/svg%3E")}
+header{background:var(--red);color:#fff;padding:18px 28px;display:flex;align-items:center;gap:22px;border-bottom:8px solid var(--navy)}
+header img{height:96px;background:#fff;border-radius:16px;padding:8px 12px;box-shadow:0 3px 8px rgba(0,0,0,.3)}
+header h1{margin:0;font-size:clamp(22px,3.2vw,38px);line-height:1.2}
+header h1 span{display:block;font-size:.62em;font-weight:600;opacity:.95;margin-top:4px}
+header h1 span.pt{font-size:.82em;font-weight:700;opacity:1;margin-top:2px;letter-spacing:.01em}
+main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:clamp(14px,3vh,28px) clamp(12px,2.5vw,32px)}
+.card{background:#fff;border:3px solid var(--navy);border-radius:22px;padding:clamp(16px,2.6vh,26px) clamp(14px,2vw,30px) clamp(14px,2.2vh,22px);max-width:1440px;width:100%;box-shadow:0 6px 24px rgba(1,33,105,.12)}
+.card h2{margin:0 0 clamp(12px,2.2vh,20px);font-size:clamp(20px,2vw,26px);text-align:center}
+.tests{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.6vw,24px)}
+@media(max-width:1000px){.tests{grid-template-columns:repeat(2,minmax(0,1fr))}.tbtn{min-height:170px!important}}
+@media(max-width:560px){.tests{grid-template-columns:1fr}}
+.tbtn{font:inherit;border:none;border-radius:24px;background:var(--red);color:#fff;cursor:pointer;padding:clamp(18px,3vh,30px) 12px;min-height:clamp(220px,40vh,380px);
+ box-shadow:0 8px 0 #7a0a1c;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(6px,1.2vh,12px);text-align:center;transition:transform .08s}
+.tbtn:hover{filter:brightness(1.07)} .tbtn:active{transform:translateY(5px);box-shadow:0 2px 0 #7a0a1c}
+.tbtn:focus-visible{outline:4px solid #ffcc00;outline-offset:4px}
+.tbtn .ic{font-size:clamp(44px,6vh,68px);line-height:1}
+.tbtn .t{font-size:clamp(22px,2.2vw,36px);font-weight:700;line-height:1.15;white-space:nowrap}
+.tbtn .age{font-size:clamp(16px,1.6vw,24px);font-weight:700;background:rgba(255,255,255,.18);border-radius:999px;padding:4px 16px;white-space:nowrap}
+.tbtn.navy{background:var(--navy);box-shadow:0 8px 0 #000c3a}
+.tbtn.navy:active{box-shadow:0 2px 0 #000c3a}
+.status{margin-top:clamp(16px,2.6vh,26px);font-size:14px;color:#3a4a74;display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center}
+.status b{font-weight:700}
+.ok{color:#137a2e}.bad{color:#c62828}.wait{color:#9a6b00}
+.addm{margin:16px auto 0;max-width:760px;background:#fdecef;border:2px solid var(--red);border-radius:14px;padding:12px 16px;font-size:14px;text-align:center;line-height:1.45}
+.abtn{font:inherit;font-weight:700;margin-top:10px;border:none;border-radius:12px;padding:9px 16px;background:var(--navy);color:#fff;cursor:pointer}
+footer{text-align:center;font-size:12px;color:#6a7594;padding:10px}
+</style></head>
+<body>
+<header><img src="assets/logo.png" alt="London Centre of English"><h1>London Centre of English Language School<span class="pt">Placement Tests</span><span>Choose a test to begin</span></h1></header>
+<main><div class="card">
+ <h2>Which test do you want to give?</h2>
+ <div class="tests">
+  <button class="tbtn" id="b-phonics" data-test="phonics"><span class="ic">🔤</span><span class="t">Phonics</span><span class="age">(3–6 years)</span></button>
+  <button class="tbtn navy" id="b-kids" data-test="kids"><span class="ic">🧒</span><span class="t">Young Learners</span><span class="age">(7–12 years)</span></button>
+  <button class="tbtn" id="b-teen" data-test="teen"><span class="ic">🎒</span><span class="t">Teenagers</span><span class="age">(13–19 years)</span></button>
+  <button class="tbtn navy" id="b-adult" data-test="adult"><span class="ic">🎓</span><span class="t">Adults</span><span class="age">(20 years upwards)</span></button>
+ </div>
+ <div class="status"><span>🎤 Microphone: <b id="st-mic" class="wait">checking…</b></span><span>🗣 Offline speech recognition: <b id="st-sr" class="wait">loading…</b></span></div>
+ <div id="addModel" class="addm" hidden>Automatic marking of reading aloud and speaking needs the speech model file
+  <b>London-Centre-Tests-Speech-Model.tar.gz</b> (41 MB, in the same OneDrive folder as this app). The tests still work without it – the teacher marks reading and speaking from the recordings.
+  <br><button id="addModelBtn" class="abtn">➕ Add speech model file…</button></div>
+</div></main>
+<footer id="foot">London Centre Tests · works offline · the microphone is allowed automatically</footer>
+<script src="inject/sr-shim.js"></script>
+<script>
+document.querySelectorAll('.tbtn').forEach(b=>b.onclick=()=>window.lcApp.open(b.dataset.test));
+const $=id=>document.getElementById(id);
+function set(el,cls,txt){el.className=cls;el.textContent=txt;}
+(async()=>{try{const ds=await navigator.mediaDevices.enumerateDevices();const n=ds.filter(d=>d.kind==='audioinput').length;
+  set($('st-mic'),n?'ok':'bad',n?'allowed ✓ ('+n+' input'+(n>1?'s':'')+')':'no microphone found – plug one in');}catch(e){set($('st-mic'),'bad','not available');}})();
+const t0=Date.now();
+if(window.lcSpeech.state==='missing'){set($('st-sr'),'bad','speech model not installed – recordings still work');$('addModel').hidden=false;
+ $('addModelBtn').onclick=async()=>{const r=await window.lcApp.importSpeechModel();if(r&&r.ok)location.reload();};}
+else window.lcSpeech.preload().then(()=>set($('st-sr'),'ok','ready ✓ ('+((Date.now()-t0)/1000).toFixed(1)+' s)'),e=>set($('st-sr'),'bad','not available – recordings still work, teacher marks reading'));
+if(window.lcApp)window.lcApp.info().then(i=>{$('foot').textContent='London Centre Tests v'+i.version+' · works offline · the microphone is allowed automatically';});
+</script>
+</body></html>

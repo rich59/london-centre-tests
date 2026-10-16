@@ -1,0 +1,84 @@
+{
+  "name": "london-centre-tests",
+  "productName": "London Centre Tests",
+  "version": "1.1.0",
+  "description": "London Centre of English Language School – Placement Tests (offline, microphone always allowed)",
+  "author": {
+    "name": "London Centre of English Language School"
+  },
+  "license": "UNLICENSED",
+  "main": "app/main.js",
+  "scripts": {
+    "sync-tests": "sh scripts/sync-tests.sh",
+    "start": "electron .",
+    "dist:win": "electron-builder --win nsis portable --x64",
+    "dist:linux": "electron-builder --linux dir --x64",
+    "build-tests": "python3 scripts/build-tests.py"
+  },
+  "build": {
+    "appId": "com.londoncentre.tests",
+    "productName": "London Centre Tests",
+    "copyright": "London Centre of English Language School",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "app/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "compression": "maximum",
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "signAndEditExecutable": true
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "London Centre Tests",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "artifactName": "London-Centre-Tests-Setup-${version}.${ext}",
+      "include": "build/installer.nsh"
+    },
+    "portable": {
+      "artifactName": "London-Centre-Tests-Portable-${version}.${ext}"
+    },
+    "linux": {
+      "icon": "build/icon.png",
+      "target": [
+        "dir"
+      ],
+      "category": "Education"
+    },
+    "electronLanguages": [
+      "en-US",
+      "en-GB",
+      "th"
+    ],
+    "afterPack": "build/afterPack.js"
+  },
+  "devDependencies": {
+    "electron": "^44.7.2",
+    "electron-builder": "^26.15.3",
+    "vosk-browser": "0.0.8"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "schoolName": "London Centre of English Language School",
+  "schoolEmail": "london-english@live.com",
+  "sendToSchool": true,
+  "emailjs": {
+    "serviceId": "YOUR_SERVICE_ID",
+    "templateId": "YOUR_TEMPLATE_ID",
+    "publicKey": "YOUR_PUBLIC_KEY"
+  },
+  "remoteConfigUrl": "https://rich59.github.io/london-centre-tests/config.json"
+}
